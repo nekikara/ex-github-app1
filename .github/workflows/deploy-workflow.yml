@@ -8,4 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Echo branc name
-        run: echo 'Deploy ${{ github.event.deployment.ref }} to ${{ github.event.deployment }}'
+        run: echo 'Deploy ${{ github.event.deployment.ref }} to ${{ github.event.deployment.playload.environment }}'
