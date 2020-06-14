@@ -1,0 +1,11 @@
+name: Deploy
+on:
+  deploy
+
+jobs:
+  build:
+    name: Shout
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo branc name
+        run: echo 'Deploy ${{ github.ref }} to ${{ github.event.deploy }}'
