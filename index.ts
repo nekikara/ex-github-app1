@@ -37,9 +37,16 @@ async function main() {
       authorization: `token ${installationAccessToken}`,
       accept: "application/vnd.github.machine-man-preview+json",
     },
-    title: 'Second Issue',
+    ref: 'deploy-event-test',
+    task: 'deploy',
+    auto_merge: false,
+    environment: 'staging',
+    payload: {
+      deploy: 'test'
+    }
   }
-  const x = await request("POST /repos/:owner/:repo/issues", options)
+  // @ts-ignore
+  const x = await request("POST /repos/:owner/:repo/deployments", options)
   console.log('result: ', x)
 }
 
