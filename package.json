@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@octokit/app": "^4.2.0",
+    "@rushstack/ts-command-line": "^4.4.2",
     "dotenv": "^8.2.0",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.5"
