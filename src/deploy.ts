@@ -1,5 +1,5 @@
-import fs from 'fs'
-import dotenv from 'dotenv'
+import * as fs from 'fs'
+import * as dotenv from 'dotenv'
 import {CommandLineChoiceParameter, CommandLineStringParameter} from "@rushstack/ts-command-line";
 import { App } from "@octokit/app"
 import { request } from "@octokit/request"
@@ -7,8 +7,7 @@ import { request } from "@octokit/request"
 export async function deploy(branchName: CommandLineStringParameter,
                              environment: CommandLineChoiceParameter) {
   if (!branchName) return
-  console.log(branchName.value, environment.value)
-  dotenv.config()
+  dotenv.config({path: __dirname + '/.env'})
   const APP_ID = Number(process.env.APP_ID!)
   const owner = process.env.OWNER!
   const repo = process.env.REPO!
@@ -41,10 +40,10 @@ export async function deploy(branchName: CommandLineStringParameter,
       authorization: `token ${installationAccessToken}`,
       accept: "application/vnd.github.machine-man-preview+json",
     },
-    ref: this.branch.value,
+    ref: branchName.value,
     task: 'deploy',
     auto_merge: false,
-    environment: this.environment.value,
+    environment: environment.value,
     payload: {
       deploy: 'test'
     }
