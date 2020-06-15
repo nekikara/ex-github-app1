@@ -1,0 +1,11 @@
+name: Deploy
+on:
+  deployment
+
+jobs:
+  build:
+    name: Shout
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo branc name
+        run: echo 'Deploy ${{ github.event.deployment.ref }} to ${{ github.event.deployment.environment }} as ${{ github.event.deployment.payload.deploy }}'
